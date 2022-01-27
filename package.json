@@ -1,0 +1,36 @@
+{
+  "name": "users-test",
+  "version": "1.0.0",
+  "description": "CRUD of a users table.",
+  "main": "src/index.js",
+  "author": "Germán Pardo",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
+    "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
+    "db:migrate:test": "cross-env NODE_ENV=test npx sequelize-cli db:migrate",
+    "db:seed:test": "cross-env NODE_ENV=test npx sequelize-cli db:seed:all",
+    "pretest": "yarn db:create:test && yarn db:migrate:test && yarn db:seed:test",
+    "test": "cross-env NODE_ENV=test jest --forceExit",
+    "posttest": "cross-env NODE_ENV=test npx sequelize-cli db:drop"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.14.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.4.7",
+    "supertest": "^6.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
